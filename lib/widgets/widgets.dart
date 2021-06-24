@@ -27,3 +27,12 @@ TextStyle simpleTextFieldStyle(){
                 fontSize: 16
               );
 }
+
+
+
+TextStyle mediumTextFieldStyle(){
+  return  TextStyle(
+                color: Colors.white,
+                fontSize: 17
+  );
+}

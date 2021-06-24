@@ -1,4 +1,5 @@
 import 'package:chat_app/views/signin.dart';
+import 'package:chat_app/views/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -22,18 +23,18 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-       // primaryColor: Color(0xff145C9E),
+        primaryColor: Color(0xff145C9E),
         scaffoldBackgroundColor: Color(0xff1F1F1F),
        // accentColor: Color(0xff007EF4),
         //fontFamily: "OverpassRegular",
         //visualDensity: VisualDensity.adaptivePlatformDensity,
-        primarySwatch: Colors.blue,
+        //primarySwatch: Colors.blue,
         // This makes the visual density adapt to the platform that you run
         // the app on. For desktop platforms, the controls will be smaller and    
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignIn(),
+      home: SignUp(),
     );
   }
 }
