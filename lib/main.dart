@@ -1,3 +1,4 @@
+import 'package:chat_app/helper/authenticate.dart';
 import 'package:chat_app/views/signin.dart';
 import 'package:chat_app/views/signup.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignUp(),
+      home: Authenticate(),
     );
   }
 }
