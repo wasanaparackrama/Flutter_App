@@ -1,11 +1,11 @@
 import 'package:chat_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth.dart';
+import 'package:chat_app/services/database.dart';
 
 import 'chatroomscreen.dart';
 
 class SignUp extends StatefulWidget {
-
   final Function toggle;
   SignUp(this.toggle);
   @override
@@ -16,6 +16,7 @@ class _SignUpState extends State<SignUp> {
   bool isloading = false;
 
   AuthMethods authMethods = new AuthMethods();
+  DatabaseMethods databaseMethods = new DatabaseMethods();
 
   //AuthMethods authMethods = new AuthMethods();
 
@@ -29,6 +30,11 @@ class _SignUpState extends State<SignUp> {
 
   signMeUp() {
     if (formKey.currentState.validate()) {
+      Map<String, String> userInfoMap = {
+          "name" : userNameTextEditingController.text,
+          "email": emailTextEditingController.text
+        };
+
       setState(() {
         isloading = true;
       });
@@ -37,11 +43,14 @@ class _SignUpState extends State<SignUp> {
               passwordTextEditingController.text)
           .then((val) {
         //print("${val.uid}");
-      //go to different screen use navigator
-        Navigator.pushReplacement(context, MaterialPageRoute(
-          builder: (context) => ChatRoom()
-          
-          ));
+        //go to different screen use navigator
+        
+        
+        
+
+        databaseMethods.uploadUserInfo(userInfoMap);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => ChatRoom()));
       });
     }
   }
@@ -86,7 +95,7 @@ class _SignUpState extends State<SignUp> {
                                 controller: emailTextEditingController,
                                 style: simpleTextFieldStyle(),
                                 decoration: textFieldInputDecoration("email")),
-                             TextFormField(
+                            TextFormField(
                                 obscureText: true,
                                 validator: (val) {
                                   return val.length < 6
@@ -164,10 +173,10 @@ class _SignUpState extends State<SignUp> {
                             style: mediumTextFieldStyle(),
                           ),
                           GestureDetector(
-                             onTap: () {
-                        widget.toggle();
-                      },
-                        child: Container(
+                            onTap: () {
+                              widget.toggle();
+                            },
+                            child: Container(
                               padding: EdgeInsets.symmetric(vertical: 8),
                               child: Text(
                                 "Sign In now",
