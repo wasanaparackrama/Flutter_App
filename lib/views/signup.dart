@@ -1,3 +1,4 @@
+import 'package:chat_app/helper/helperfunctions.dart';
 import 'package:chat_app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:chat_app/services/auth.dart';
@@ -31,9 +32,13 @@ class _SignUpState extends State<SignUp> {
   signMeUp() {
     if (formKey.currentState.validate()) {
       Map<String, String> userInfoMap = {
-          "name" : userNameTextEditingController.text,
-          "email": emailTextEditingController.text
-        };
+        "name": userNameTextEditingController.text,
+        "email": emailTextEditingController.text
+      };
+      HelperFunctions.saveUserEmailSharedPreference(
+          emailTextEditingController.text);
+      HelperFunctions.saveUserEmailSharedPreference(
+          userNameTextEditingController.text);
 
       setState(() {
         isloading = true;
@@ -44,9 +49,6 @@ class _SignUpState extends State<SignUp> {
           .then((val) {
         //print("${val.uid}");
         //go to different screen use navigator
-        
-        
-        
 
         databaseMethods.uploadUserInfo(userInfoMap);
         Navigator.pushReplacement(
