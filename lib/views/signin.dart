@@ -35,19 +35,21 @@ class _SignInState extends State<SignIn> {
     if (formKey.currentState.validate()) {
       HelperFunctions.saveUserEmailSharedPreference(
           emailTextEditingController.text);
+           
+       databaseMethods
+          .getUserByUserEmail(emailTextEditingController.text)
+          .then((val) {
+        snapshotUserInfo = val;
+          HelperFunctions.saveUserNameSharedPreference(
+              snapshotUserInfo.documents[0].data["name"]);
+      });
 
       //todo get user s=data
       setState(() {
         isloading = true;
       });
 
-      databaseMethods
-          .getUserByUserEmail(emailTextEditingController.text)
-          .then((val) {
-        snapshotUserInfo = val;
-          HelperFunctions.saveUserEmailSharedPreference(
-              snapshotUserInfo.documents[0].data["userEmail"]);
-      });
+     
 
       authMethods
           .signInWithEmailAndPassword(emailTextEditingController.text,
