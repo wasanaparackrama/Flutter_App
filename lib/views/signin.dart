@@ -92,14 +92,14 @@ class _SignInState extends State<SignIn> {
                           },
                           controller: emailTextEditingController,
                           style: simpleTextFieldStyle(),
-                          decoration: textFieldInputDecoration("email")),
+                          decoration: textFieldInputDecoration("username")),
                       TextFormField(
                           validator: (val) {
                             return RegExp(
                                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                                     .hasMatch(val)
                                 ? null
-                                : "Enter correct email";
+                                : "Enter correct password";
                           },
                           controller: passwordTextEditingController,
                           style: simpleTextFieldStyle(),

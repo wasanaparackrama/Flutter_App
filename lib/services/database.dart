@@ -30,4 +30,14 @@ class DatabaseMethods {
       print(e.toString());
     });
   }
+
+
+  getConversationMessages(String chatRoomId,messageMap) async{
+    return Firestore.instance
+        .collection("ChatRoom")
+        .document(chatRoomId)
+        .collection("chats")
+        .orderBy('time')
+        .snapshots();
+  }
 }
